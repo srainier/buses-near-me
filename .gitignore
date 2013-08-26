@@ -1,0 +1,13 @@
+# virtualenv
+.env
+# Python bytecode
+*.pyc
+# Vim swap files.
+*.swp
+# sqlite debug db
+app.db
+
+# Static assets - cache and generated.
+app/static/css/main.css
+app/static/.webassets-cache/*
+app/static/compiled/*

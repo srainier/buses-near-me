@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <link rel="icon" type="image/vnd.microsoft.icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Buses Near Me</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        {% assets "css_all" %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='compiled/app.css') }}">
+        {% endassets %}
+
+        <script src="{{ url_for('static', filename='js/vendor/modernizr-2.6.2.min.js') }}"></script>
+
+        <script id="location_input_template" type="text/html">
+            <div class="geolocate_input">
+                <div class="pure-button geolocate_button">
+                    Find stops near me
+                </div>
+                <h4>Or</h4>
+            </div>
+            <div class="search_input">
+                <h4 class="search_prompt">Enter a location to search near:</h4>
+                <div>
+                    <input class="search_text_input" type="text" placeholder="Ex: 123 Sesame St"></input>
+                    <div class="pure-button search_button">Go</div>
+                    <p class="error_message" />
+                </div>
+                <p class="search_summary"/>
+            </div>
+            <div class="input_options">
+            </div>
+        </script>
+
+        <script id="stop_template" type="text/html">
+            <td class="stop">
+                <span class="map_link">Where is this?</span>
+                <span class="close_map_link disabled">Close</span>
+                <h4 class="stop_title"><span class="deemphasize"><%= title %></span></h4>
+                <h5 class="stop_distance"><%= user_distance %> miles</h5>
+                <div class="departures"/>
+                <div class="location_map disabled">
+                </div>
+            </td>
+        </script>
+
+        <script id="stops_template" type="text/html">
+            <hr>
+            <div class="no_stops disabled">
+                <h2>No stops were found near you.</h2>
+                <h3>Did you enter a location near the San Francisco Bay Area?</h3>
+            </div>
+            <table class="stops_list pure-table pure-table-striped disabled">
+                <thead>
+                    <tr>
+                        <th>Stops</th>
+                    </tr>
+                </thead>
+            </table>
+        </script>
+
+        <script id="departure_template" type="text/html">
+            <h4 class="departure_info">Route: <span class="deemphasize"><%= route %></span></h4>
+            <h4 class="departure_info">Direction: <span class="deemphasize"><%= route_direction %></span></h4>
+            <h4 class="departure_info">Next Departures:</h4>
+            <ul class="departure_time_list">
+            </ul>
+        </script>
+
+        <script id="departures_template" type="text/html">
+            <ul class="departures_list"/>
+            <h4 class="no_departures disabled">
+                There are no departures at this stop in the next hour
+            </h4>
+        </script>
+
+        <script id="app_template" type="text/html">
+            <div class="input_view"/>
+            <div class="stops_view"/>
+        </script>
+
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="main pure-skin-bluish">
+            <div class="heading">
+                <a href="/"><h1 class="title">Buses Near Me</h1></a>
+                <h4 class="subtitle">Find bus stops near your with real-time departure times for SF-Muni and AC Transit</h4>
+            </div>
+            <div class="app"/>
+
+        </div>
+
+        
+        {% assets "js_all" %}
+            <script type="text/javascript" src="{{ url_for('static', filename='compiled/app.js') }}"></script>
+        {% endassets %}
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    </body>
+</html>

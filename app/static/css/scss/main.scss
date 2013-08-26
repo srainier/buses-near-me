@@ -1,0 +1,163 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+.main {
+    max-width: 480px;
+    box-sizing: border-box;
+    margin-top: 2em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.heading {
+    width: 320px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    a {
+        color: #222;
+        text-decoration: none;
+    }
+
+    .title {
+        margin-bottom: 0;
+        font-size: 2.5em;
+        line-height: 1.1em;
+    }
+
+    .subtitle {
+        margin-top: 0.5em;
+        font-weight: normal;
+    }
+}
+
+.app {
+    .input_view {
+        text-align: center;
+    }
+
+    .geolocate_input h4 {
+        font-style: italic
+    }
+
+    .search_input {
+        .search_prompt {
+            margin: 0;
+        }
+
+        input {
+            width: 300px;
+            padding: 6px;
+        }
+
+        .error_message {
+            margin: 0;
+            font-size: 12px;
+            color: red;
+            text-align: left;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .no_stops.disabled {
+        display: none;
+    }
+
+    .stops_list {
+        &.disabled {
+            display: none;
+        }
+
+        width: 100%;
+
+        .map_link, .close_map_link {
+            display: inline;
+            float: right;
+            font-size: 0.75em;
+            line-height: 1.83333333em;
+            cursor: pointer;
+            &.disabled {
+                display: none;
+            }
+        }
+
+        // This is a little bit of flourish that makes the
+        // map link appear only when the cursor is hovering
+        // over the stop element. Of course this behavior is
+        // undesireable on touch-only devices, so we can use
+        // the modernizr .no-touch class to filter out touch-
+        // only devices.
+        .no-touch & {
+            .map_link:hover, .close_map_link:hover {
+                text-decoration:underline;
+            }
+
+            .map_link  {
+                display: none;
+            }
+            .stop:hover .map_link {
+                display: inline;
+                &.disabled {
+                    display: none;
+                }
+            }
+
+        }
+
+        .stop {
+            padding: 1em;
+            .stop_title {
+                margin: 0;
+                display: inline-block;
+            }
+
+            .stop_distance {
+                margin: 0;
+            }
+
+            .departures {
+                .departure_info {
+                    margin: 0;
+                    display: block;
+                }
+
+                ul {
+                    list-style: none;
+                    margin: 0;
+                    &.departures_list {
+                        padding: 0;
+                        & > li {
+                            padding-top: 10px;
+                        }
+                    }
+                }
+
+                .no_departures.disabled {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .location_map {
+        width: 100%;
+        height: 400px;
+        margin-top: 10px;
+
+        &.disabled {
+            display: none;
+        }
+    }
+
+    .deemphasize {
+        font-weight: normal;
+    }
+
+    .pure-skin-bluish .pure-table td {
+        cursor: pointer;
+    }
+}
